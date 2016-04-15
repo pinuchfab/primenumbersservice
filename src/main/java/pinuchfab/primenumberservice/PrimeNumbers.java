@@ -107,7 +107,9 @@ public class PrimeNumbers
     private List<Integer> calculateJava8ParallelWithThreadingLimit() throws InterruptedException, ExecutionException 
     {
     	ForkJoinPool pool = new ForkJoinPool(2);
-    	return pool.submit(() -> calculateJava8Parallel()).get();
+    	List<Integer> result_ = pool.submit(() -> calculateJava8Parallel()).get();
+    	pool.shutdown();
+    	return result_;
     }
     
     private List<Integer> calculateJava8() 
